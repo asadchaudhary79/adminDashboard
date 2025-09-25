@@ -20,15 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 interface AddNewBlogPostProps {
@@ -37,7 +29,7 @@ interface AddNewBlogPostProps {
 }
 
 export function AddNewBlogPost({ isOpen, onClose }: AddNewBlogPostProps) {
-  const [date, setDate] = useState<Date>();
+  const [date, setDate] = useState<string>("");
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -106,28 +98,16 @@ export function AddNewBlogPost({ isOpen, onClose }: AddNewBlogPostProps) {
             </div>
             <div className="space-y-2">
               <Label htmlFor="publishDate">Publish Date</Label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={"outline"}
-                    className={cn(
-                      "w-full justify-start text-left font-normal bg-background/50",
-                      !date && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
+              <div className="relative">
+                <Input
+                  id="publishDate"
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="w-full bg-background/50 pr-10"
+                />
+                <CalendarIcon className="h-4 w-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="featuredImage">Featured Image URL</Label>

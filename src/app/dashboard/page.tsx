@@ -9,13 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+// Removed unused Select components
 import {
   Users,
   Briefcase,
@@ -29,17 +23,11 @@ import {
   Shield,
   AlertTriangle,
   CheckCircle2,
-  Ban,
-  Mail,
-  Plus,
-  Eye,
+  // Removed unused: Ban, Mail, Plus, Eye,
   Clock,
-  DollarSign,
+  // Removed unused: DollarSign,
   MapPin,
-  BarChart3,
-  Activity,
-  Zap,
-  Target,
+  // Removed unused: BarChart3, Activity, Zap, Target,
   Filter,
   Download,
   Upload,
@@ -47,18 +35,14 @@ import {
   Search,
   UserPlus,
   FileText,
-  Globe,
-  TrendingDown,
-  Users2,
+  // Removed unused: Globe, TrendingDown, Users2,
   Building,
-  CreditCard,
-  PieChart as PieChartIcon,
+  // Removed unused: CreditCard, PieChartIcon,
 } from "lucide-react";
 import {
   LineChart,
   Line,
-  BarChart,
-  Bar,
+  // Removed unused: BarChart, Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -210,7 +194,7 @@ export default function AdminPage() {
         <div>
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
           <p className="text-muted-foreground">
-            Welcome back! Here's your platform overview
+            Welcome back! Here&apos;s your platform overview
           </p>
         </div>
         <div className="flex gap-2">

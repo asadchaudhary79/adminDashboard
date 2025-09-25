@@ -6,20 +6,14 @@ import {
   Book,
   Briefcase,
   ClipboardList,
-  Users2,
-  Folder,
-  BarChart3,
-  Bell,
   Mail,
   CreditCard,
-  Plug,
-  FileCog,
 } from "lucide-react";
 
 export interface DashboardNavigationItem {
   name: string;
   href: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   description?: string;
 }
 

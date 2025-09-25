@@ -22,12 +22,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import {
   ChevronLeft,
   CalendarIcon,
   ImageIcon,
@@ -48,14 +42,14 @@ import {
   Redo,
   Code,
 } from "lucide-react";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
+// Removed date-fns dependency by using native date input
+// removed unused cn
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 
 export default function NewBlogPost() {
   const router = useRouter();
-  const [date, setDate] = useState<Date>();
+  const [date, setDate] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [content, setContent] = useState("");
@@ -88,7 +82,7 @@ export default function NewBlogPost() {
     // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
-      router.push("/admin/blog");
+      router.push("/dashboard/blog");
     }, 1500);
   };
 
@@ -334,28 +328,15 @@ export default function NewBlogPost() {
                 <Label htmlFor="publishDate" className="text-sm">
                   Publish Date
                 </Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full mt-1.5 justify-start text-left font-normal bg-background/50",
-                        !date && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date ? format(date, "PPP") : <span>Pick a date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+                <div className="mt-1.5">
+                  <Input
+                    id="publishDate"
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="bg-background/50"
+                  />
+                </div>
               </div>
 
               <div>
