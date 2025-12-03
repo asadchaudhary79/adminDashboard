@@ -191,18 +191,22 @@ export default function AdminPage() {
     <div className="flex flex-col gap-6">
       {/* Header with Actions */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
           <p className="text-muted-foreground">
             Welcome back! Here&apos;s your platform overview
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm" className="bg-background/50">
+          <Button
+            variant="outline"
+            size="sm"
+            className="bg-background/50 hover:bg-background/80 shadow-sm hover:shadow-md transition-all"
+          >
             <Bell className="h-4 w-4 mr-2" />
             Notifications
           </Button>
-          <Button className="bg-primary hover:bg-primary/90">
+          <Button className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all">
             <Settings className="h-4 w-4 mr-2" />
             Settings
           </Button>
@@ -211,141 +215,102 @@ export default function AdminPage() {
 
       {/* Key Metrics */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card className="bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-colors">
+        <Card className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-foreground">
+              Total Users
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12,345</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="text-green-500">↑ 12%</span> vs last month
-            </p>
+            <div className="text-3xl font-bold text-foreground">12,345</div>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp className="h-3 w-3 text-green-600 dark:text-green-400" />
+              <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                ↑ 12% vs last month
+              </p>
+            </div>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-colors">
+        <Card className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Active Jobs</CardTitle>
-            <Briefcase className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-foreground">
+              Active Jobs
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <Briefcase className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">1,234</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="text-green-500">↑ 8%</span> vs last month
-            </p>
+            <div className="text-3xl font-bold text-foreground">1,234</div>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp className="h-3 w-3 text-green-600 dark:text-green-400" />
+              <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                ↑ 8% vs last month
+              </p>
+            </div>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-colors">
+        <Card className="bg-gradient-to-br from-green-500/10 to-green-600/5 border-green-500/20 hover:border-green-500/40 transition-all duration-300 hover:shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Companies</CardTitle>
-            <Building2 className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-foreground">
+              Companies
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <Building2 className="h-5 w-5 text-green-600 dark:text-green-400" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">567</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="text-green-500">↑ 15%</span> vs last month
-            </p>
+            <div className="text-3xl font-bold text-foreground">567</div>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp className="h-3 w-3 text-green-600 dark:text-green-400" />
+              <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                ↑ 15% vs last month
+              </p>
+            </div>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-colors">
+        <Card className="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border-orange-500/20 hover:border-orange-500/40 transition-all duration-300 hover:shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Applications</CardTitle>
-            <FileCheck className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-foreground">
+              Applications
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
+              <FileCheck className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">8,901</div>
-            <p className="text-xs text-muted-foreground">
-              <span className="text-green-500">↑ 18%</span> vs last month
-            </p>
+            <div className="text-3xl font-bold text-foreground">8,901</div>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp className="h-3 w-3 text-green-600 dark:text-green-400" />
+              <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                ↑ 18% vs last month
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
-
-      {/* Quick Actions Panel */}
-      <Card className="bg-card/50 backdrop-blur-xl">
-        <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
-          <CardDescription>Common administrative tasks</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Button
-              variant="outline"
-              className="h-20 flex-col gap-2 bg-background/50 hover:bg-background/80"
-            >
-              <UserPlus className="h-6 w-6" />
-              <span className="text-sm">Add User</span>
-            </Button>
-            <Button
-              variant="outline"
-              className="h-20 flex-col gap-2 bg-background/50 hover:bg-background/80"
-            >
-              <Building className="h-6 w-6" />
-              <span className="text-sm">Add Company</span>
-            </Button>
-            <Button
-              variant="outline"
-              className="h-20 flex-col gap-2 bg-background/50 hover:bg-background/80"
-            >
-              <FileText className="h-6 w-6" />
-              <span className="text-sm">Add Job</span>
-            </Button>
-            <Button
-              variant="outline"
-              className="h-20 flex-col gap-2 bg-background/50 hover:bg-background/80"
-            >
-              <Upload className="h-6 w-6" />
-              <span className="text-sm">Bulk Import</span>
-            </Button>
-            <Button
-              variant="outline"
-              className="h-20 flex-col gap-2 bg-background/50 hover:bg-background/80"
-            >
-              <Download className="h-6 w-6" />
-              <span className="text-sm">Export Data</span>
-            </Button>
-            <Button
-              variant="outline"
-              className="h-20 flex-col gap-2 bg-background/50 hover:bg-background/80"
-            >
-              <RefreshCw className="h-6 w-6" />
-              <span className="text-sm">Sync Data</span>
-            </Button>
-            <Button
-              variant="outline"
-              className="h-20 flex-col gap-2 bg-background/50 hover:bg-background/80"
-            >
-              <Search className="h-6 w-6" />
-              <span className="text-sm">Search Users</span>
-            </Button>
-            <Button
-              variant="outline"
-              className="h-20 flex-col gap-2 bg-background/50 hover:bg-background/80"
-            >
-              <Filter className="h-6 w-6" />
-              <span className="text-sm">Advanced Filter</span>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Pending Approvals & Content Moderation */}
       <div className="grid gap-6 md:grid-cols-2">
-        <Card className="bg-card/50 backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-background to-background/50 border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
-            <CardTitle>Pending Approvals</CardTitle>
+            <CardTitle className="text-lg font-semibold">
+              Pending Approvals
+            </CardTitle>
             <CardDescription>Items requiring your attention</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {pendingApprovals.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-colors"
+                  className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-amber-500/5 to-amber-500/0 border border-amber-500/10 hover:border-amber-500/30 hover:bg-amber-500/10 transition-all duration-200"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-full bg-yellow-500/10">
-                      <Clock className="h-4 w-4 text-yellow-500" />
+                    <div className="p-2 rounded-lg bg-amber-500/20">
+                      <Clock className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                     </div>
                     <div>
                       <p className="text-sm font-medium">{item.description}</p>
@@ -354,7 +319,11 @@ export default function AdminPage() {
                       </p>
                     </div>
                   </div>
-                  <Button size="sm" variant="outline">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="hover:bg-amber-500/10 hover:border-amber-500/30"
+                  >
                     Review
                   </Button>
                 </div>
@@ -363,35 +332,37 @@ export default function AdminPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-background to-background/50 border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
-            <CardTitle>Upcoming Events & Deadlines</CardTitle>
+            <CardTitle className="text-lg font-semibold">
+              Upcoming Events & Deadlines
+            </CardTitle>
             <CardDescription>Important dates and reminders</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {upcomingEvents.map((event, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-colors"
+                  className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-background/80 to-background/40 border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200"
                 >
                   <div className="flex items-center gap-3">
                     <div
-                      className={`p-2 rounded-full ${
+                      className={`p-2 rounded-lg ${
                         event.priority === "high"
-                          ? "bg-red-500/10"
+                          ? "bg-red-500/20"
                           : event.priority === "medium"
-                          ? "bg-yellow-500/10"
-                          : "bg-blue-500/10"
+                          ? "bg-yellow-500/20"
+                          : "bg-blue-500/20"
                       }`}
                     >
                       <Calendar
                         className={`h-4 w-4 ${
                           event.priority === "high"
-                            ? "text-red-500"
+                            ? "text-red-600 dark:text-red-400"
                             : event.priority === "medium"
-                            ? "text-yellow-500"
-                            : "text-blue-500"
+                            ? "text-yellow-600 dark:text-yellow-400"
+                            : "text-blue-600 dark:text-blue-400"
                         }`}
                       />
                     </div>
@@ -405,10 +376,10 @@ export default function AdminPage() {
                   <Badge
                     className={
                       event.priority === "high"
-                        ? "bg-red-500/10 text-red-500"
+                        ? "bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20"
                         : event.priority === "medium"
-                        ? "bg-yellow-500/10 text-yellow-500"
-                        : "bg-blue-500/10 text-blue-500"
+                        ? "bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 border-yellow-500/20"
+                        : "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20"
                     }
                   >
                     {event.priority}
@@ -423,18 +394,20 @@ export default function AdminPage() {
       {/* Quick Actions and Recent Activity */}
       <div className="grid gap-6 md:grid-cols-2">
         {/* System Status & Performance */}
-        <Card className="bg-card/50 backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-background to-background/50 border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
-            <CardTitle>System Status & Performance</CardTitle>
+            <CardTitle className="text-lg font-semibold">
+              System Status & Performance
+            </CardTitle>
             <CardDescription>Real-time system metrics</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {/* Server Status */}
-              <div className="flex items-center justify-between p-3 rounded-lg bg-background/50">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-green-500/5 to-green-500/0 border border-green-500/10 hover:border-green-500/30 hover:bg-green-500/10 transition-all duration-200">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-full bg-green-500/10">
-                    <CheckCircle2 className="h-4 w-4 text-green-500" />
+                  <div className="p-2 rounded-lg bg-green-500/20">
+                    <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
                     <p className="text-sm font-medium">Server Status</p>
@@ -443,14 +416,16 @@ export default function AdminPage() {
                     </p>
                   </div>
                 </div>
-                <Badge className="bg-green-500/10 text-green-500">Online</Badge>
+                <Badge className="bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20">
+                  Online
+                </Badge>
               </div>
 
               {/* API Performance */}
-              <div className="flex items-center justify-between p-3 rounded-lg bg-background/50">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-blue-500/5 to-blue-500/0 border border-blue-500/10 hover:border-blue-500/30 hover:bg-blue-500/10 transition-all duration-200">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-full bg-blue-500/10">
-                    <TrendingUp className="h-4 w-4 text-blue-500" />
+                  <div className="p-2 rounded-lg bg-blue-500/20">
+                    <TrendingUp className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
                     <p className="text-sm font-medium">API Response Time</p>
@@ -459,14 +434,16 @@ export default function AdminPage() {
                     </p>
                   </div>
                 </div>
-                <Badge className="bg-blue-500/10 text-blue-500">Good</Badge>
+                <Badge className="bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20">
+                  Good
+                </Badge>
               </div>
 
               {/* Database Status */}
-              <div className="flex items-center justify-between p-3 rounded-lg bg-background/50">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-purple-500/5 to-purple-500/0 border border-purple-500/10 hover:border-purple-500/30 hover:bg-purple-500/10 transition-all duration-200">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-full bg-purple-500/10">
-                    <Shield className="h-4 w-4 text-purple-500" />
+                  <div className="p-2 rounded-lg bg-purple-500/20">
+                    <Shield className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div>
                     <p className="text-sm font-medium">Database Status</p>
@@ -475,16 +452,16 @@ export default function AdminPage() {
                     </p>
                   </div>
                 </div>
-                <Badge className="bg-purple-500/10 text-purple-500">
+                <Badge className="bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20">
                   Healthy
                 </Badge>
               </div>
 
               {/* Security Status */}
-              <div className="flex items-center justify-between p-3 rounded-lg bg-background/50">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-yellow-500/5 to-yellow-500/0 border border-yellow-500/10 hover:border-yellow-500/30 hover:bg-yellow-500/10 transition-all duration-200">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-full bg-yellow-500/10">
-                    <AlertTriangle className="h-4 w-4 text-yellow-500" />
+                  <div className="p-2 rounded-lg bg-yellow-500/20">
+                    <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
                   </div>
                   <div>
                     <p className="text-sm font-medium">Security Alerts</p>
@@ -493,7 +470,7 @@ export default function AdminPage() {
                     </p>
                   </div>
                 </div>
-                <Badge className="bg-yellow-500/10 text-yellow-500">
+                <Badge className="bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 border-yellow-500/20">
                   Warning
                 </Badge>
               </div>
@@ -502,25 +479,41 @@ export default function AdminPage() {
         </Card>
 
         {/* Recent Activity */}
-        <Card className="bg-card/50 backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-background to-background/50 border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
+            <CardTitle className="text-lg font-semibold">
+              Recent Activity
+            </CardTitle>
             <CardDescription>Latest actions and alerts</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {recentActivities.map((activity) => (
                 <div
                   key={activity.id}
-                  className="flex items-center gap-4 p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-colors"
+                  className="flex items-center gap-4 p-3 rounded-lg bg-gradient-to-r from-background/80 to-background/40 border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200"
                 >
                   <div
-                    className={`p-2 rounded-full bg-background ${activity.color} bg-opacity-10`}
+                    className={`p-2 rounded-lg bg-background ${
+                      activity.color === "text-green-500"
+                        ? "bg-green-500/20"
+                        : activity.color === "text-blue-500"
+                        ? "bg-blue-500/20"
+                        : "bg-yellow-500/20"
+                    }`}
                   >
-                    <activity.icon className={`h-4 w-4 ${activity.color}`} />
+                    <activity.icon
+                      className={`h-4 w-4 ${
+                        activity.color === "text-green-500"
+                          ? "text-green-600 dark:text-green-400"
+                          : activity.color === "text-blue-500"
+                          ? "text-blue-600 dark:text-blue-400"
+                          : "text-yellow-600 dark:text-yellow-400"
+                      }`}
+                    />
                   </div>
                   <div className="flex-1 space-y-1">
-                    <p className="text-sm">{activity.message}</p>
+                    <p className="text-sm font-medium">{activity.message}</p>
                     <p className="text-xs text-muted-foreground">
                       {activity.time}
                     </p>
@@ -534,54 +527,12 @@ export default function AdminPage() {
 
       {/* Charts */}
       <div className="grid gap-6 md:grid-cols-2">
-        {/* Growth Trends */}
-        <Card className="bg-card/50 backdrop-blur-xl">
-          <CardHeader>
-            <CardTitle>Growth Trends</CardTitle>
-            <CardDescription>Monthly growth in key metrics</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={monthlyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                  <XAxis dataKey="name" stroke="#888" />
-                  <YAxis stroke="#888" />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "rgba(17, 17, 17, 0.8)",
-                      border: "none",
-                      borderRadius: "4px",
-                    }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="applications"
-                    stroke="#2563eb"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="jobs"
-                    stroke="#60a5fa"
-                    strokeWidth={2}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="companies"
-                    stroke="#93c5fd"
-                    strokeWidth={2}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Job Categories Distribution */}
-        <Card className="bg-card/50 backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-background to-background/50 border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
-            <CardTitle>Job Categories</CardTitle>
+            <CardTitle className="text-lg font-semibold">
+              Job Categories
+            </CardTitle>
             <CardDescription>Distribution of jobs by category</CardDescription>
           </CardHeader>
           <CardContent>
@@ -607,9 +558,9 @@ export default function AdminPage() {
                   </Pie>
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "rgba(17, 17, 17, 0.8)",
-                      border: "none",
-                      borderRadius: "4px",
+                      backgroundColor: "hsl(var(--card))",
+                      border: "1px solid hsl(var(--border))",
+                      borderRadius: "8px",
                     }}
                   />
                 </PieChart>
@@ -617,12 +568,15 @@ export default function AdminPage() {
             </div>
             <div className="mt-4 grid grid-cols-2 gap-4">
               {jobCategories.map((category, index) => (
-                <div key={category.name} className="flex items-center gap-2">
+                <div
+                  key={category.name}
+                  className="flex items-center gap-2 p-2 rounded-lg bg-background/50"
+                >
                   <div
                     className="h-3 w-3 rounded-full"
                     style={{ backgroundColor: COLORS[index % COLORS.length] }}
                   />
-                  <span className="text-sm">
+                  <span className="text-sm font-medium">
                     {category.name} ({category.value}%)
                   </span>
                 </div>
@@ -631,95 +585,24 @@ export default function AdminPage() {
           </CardContent>
         </Card>
 
-        {/* Financial Overview */}
-        <Card className="bg-card/50 backdrop-blur-xl">
-          <CardHeader>
-            <CardTitle>Financial Overview</CardTitle>
-            <CardDescription>
-              Revenue, expenses, and profit trends
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={financialData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                  <XAxis dataKey="month" stroke="#888" />
-                  <YAxis stroke="#888" />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "rgba(17, 17, 17, 0.8)",
-                      border: "none",
-                      borderRadius: "4px",
-                    }}
-                  />
-                  <Area
-                    type="monotone"
-                    dataKey="revenue"
-                    stackId="1"
-                    stroke="#2563eb"
-                    fill="#2563eb"
-                    fillOpacity={0.6}
-                  />
-                  <Area
-                    type="monotone"
-                    dataKey="expenses"
-                    stackId="1"
-                    stroke="#ef4444"
-                    fill="#ef4444"
-                    fillOpacity={0.6}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="mt-4 grid grid-cols-3 gap-4 text-center">
-              <div>
-                <p className="text-sm text-muted-foreground">Total Revenue</p>
-                <p className="text-lg font-bold text-green-500">
-                  $
-                  {financialData
-                    .reduce((sum, item) => sum + item.revenue, 0)
-                    .toLocaleString()}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Total Expenses</p>
-                <p className="text-lg font-bold text-red-500">
-                  $
-                  {financialData
-                    .reduce((sum, item) => sum + item.expenses, 0)
-                    .toLocaleString()}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Net Profit</p>
-                <p className="text-lg font-bold text-blue-500">
-                  $
-                  {financialData
-                    .reduce((sum, item) => sum + item.profit, 0)
-                    .toLocaleString()}
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Geographic Distribution */}
-        <Card className="bg-card/50 backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-background to-background/50 border-border/50 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
-            <CardTitle>Geographic Distribution</CardTitle>
+            <CardTitle className="text-lg font-semibold">
+              Geographic Distribution
+            </CardTitle>
             <CardDescription>Users and companies by location</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {geographicData.map((location, index) => (
                 <div
                   key={location.country}
-                  className="flex items-center justify-between p-3 rounded-lg bg-background/50"
+                  className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-blue-500/5 to-blue-500/0 border border-blue-500/10 hover:border-blue-500/30 hover:bg-blue-500/10 transition-all duration-200"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-full bg-blue-500/10">
-                      <MapPin className="h-4 w-4 text-blue-500" />
+                    <div className="p-2 rounded-lg bg-blue-500/20">
+                      <MapPin className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
                       <p className="text-sm font-medium">{location.country}</p>
@@ -729,7 +612,7 @@ export default function AdminPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium">{location.jobs}</p>
+                    <p className="text-sm font-semibold">{location.jobs}</p>
                     <p className="text-xs text-muted-foreground">active jobs</p>
                   </div>
                 </div>
