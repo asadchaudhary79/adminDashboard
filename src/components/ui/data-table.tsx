@@ -32,6 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Search, Filter } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -84,7 +85,7 @@ export function DataTable<TData, TValue>({
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-4">
         {searchColumn && (
-          <div className="flex-1">
+          <div className="relative flex-1 max-w-sm">
             <Input
               placeholder={searchPlaceholder}
               value={
@@ -96,8 +97,9 @@ export function DataTable<TData, TValue>({
                   .getColumn(searchColumn)
                   ?.setFilterValue(event.target.value)
               }
-              className="max-w-sm"
+              className="pr-10"
             />
+            <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           </div>
         )}
 
@@ -114,6 +116,7 @@ export function DataTable<TData, TValue>({
             }
           >
             <SelectTrigger className="w-[180px]">
+              <Filter className="mr-2 h-4 w-4 shrink-0" />
               <SelectValue placeholder={column.title} />
             </SelectTrigger>
             <SelectContent>

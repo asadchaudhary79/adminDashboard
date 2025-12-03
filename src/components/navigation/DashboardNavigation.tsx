@@ -1,13 +1,12 @@
 import {
-  Home,
-  Users,
+  LayoutDashboard,
+  UserCog,
   Settings,
-  Building,
-  Book,
-  Briefcase,
-  ClipboardList,
-  Mail,
-  CreditCard,
+  Building2,
+  FileText,
+  FolderKanban,
+  Mailbox,
+  Wallet,
 } from "lucide-react";
 
 export interface DashboardNavigationItem {
@@ -15,68 +14,89 @@ export interface DashboardNavigationItem {
   href: string;
   icon: React.ComponentType<{ className?: string }>;
   description?: string;
+  label?: string;
+  badge?: string | number;
 }
 
-export const getDashboardNavigation = (): DashboardNavigationItem[] => {
-  // Admin specific items only
-  const adminItems: DashboardNavigationItem[] = [
-    {
-      name: "Admin Dashboard",
-      href: "/dashboard",
-      icon: Home,
-      description: "Overview and statistics",
-    },
-    {
-      name: "Users Management",
-      href: "/dashboard/users",
-      icon: Users,
-      description: "Manage all platform users",
-    },
-    {
-      name: "Companies",
-      href: "/dashboard/companies",
-      icon: Building,
-      description: "Manage registered companies",
-    },
-    {
-      name: "Jobs",
-      href: "/dashboard/jobs",
-      icon: Briefcase,
-      description: "Manage job postings",
-    },
-    {
-      name: "Applications",
-      href: "/dashboard/applications",
-      icon: ClipboardList,
-      description: "Review and process applications",
-    },
+export interface DashboardNavigationSection {
+  title?: string;
+  items: DashboardNavigationItem[];
+}
 
+export const getDashboardNavigation = (): DashboardNavigationSection[] => {
+  return [
     {
-      name: "Blogs",
-      href: "/dashboard/blog",
-      icon: Book,
-      description: "Manage blog posts",
+      title: "OVERVIEW",
+      items: [
+        {
+          name: "Dashboard",
+          href: "/dashboard",
+          icon: LayoutDashboard,
+          description: "Overview and statistics",
+        },
+      ],
     },
     {
-      name: "Email",
-      href: "/dashboard/email",
-      icon: Mail,
-      description: "Email templates and sending",
+      title: "MANAGEMENT",
+      items: [
+        {
+          name: "Users Management",
+          href: "/dashboard/users",
+          icon: UserCog,
+          description: "Manage all platform users",
+          label: "Users",
+        },
+        {
+          name: "Companies",
+          href: "/dashboard/companies",
+          icon: Building2,
+          description: "Manage registered companies",
+          label: "Companies",
+          badge: 10,
+        },
+        {
+          name: "Jobs",
+          href: "/dashboard/jobs",
+          icon: FolderKanban,
+          description: "Manage job postings",
+          label: "Jobs",
+          badge: 12,
+        },
+      ],
     },
     {
-      name: "Billing",
-      href: "/dashboard/billing",
-      icon: CreditCard,
-      description: "Plans, invoices, and payments",
+      title: "CONTENT",
+      items: [
+        {
+          name: "Blogs",
+          href: "/dashboard/blog",
+          icon: FileText,
+          description: "Manage blog posts",
+        },
+        {
+          name: "Email",
+          href: "/dashboard/email",
+          icon: Mailbox,
+          description: "Email templates and sending",
+        },
+      ],
     },
     {
-      name: "Settings",
-      href: "/dashboard/settings",
-      icon: Settings,
-      description: "Admin settings and configuration",
+      title: "SETTINGS",
+      items: [
+        {
+          name: "Billing",
+          href: "/dashboard/billing",
+          icon: Wallet,
+          description: "Plans, invoices, and payments",
+        },
+        {
+          name: "Settings",
+          href: "/dashboard/settings",
+          icon: Settings,
+          description: "Admin settings and configuration",
+        },
+      ],
     },
   ];
-
-  // Return admin items for all roles (since we only want admin menu)
-  return adminItems;
 };

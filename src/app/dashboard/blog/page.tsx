@@ -3,235 +3,182 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import {
   Book,
   PenSquare,
-  FilePenLine,
   BookOpen,
-  Calendar,
-  MoreHorizontal,
+  TrendingUp,
   PlusCircle,
 } from "lucide-react";
-import { useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { DataTable } from "@/components/ui/data-table";
+import { columns, BlogPost } from "./columns";
+
+const blogPosts: BlogPost[] = [
+  {
+    id: "1000",
+    title: "How to Prepare for a Technical Interview",
+    category: "Interview Tips",
+    author: "John Smith",
+    status: "published",
+    publishedDate: "2024-01-15",
+    views: 3420,
+  },
+  {
+    id: "1001",
+    title: "Top 10 Resume Tips for 2024",
+    category: "Career Advice",
+    author: "Sarah Johnson",
+    status: "published",
+    publishedDate: "2024-01-20",
+    views: 2890,
+  },
+  {
+    id: "1002",
+    title: "The Future of Remote Work",
+    category: "Industry Trends",
+    author: "Michael Brown",
+    status: "draft",
+    publishedDate: null,
+    views: 0,
+  },
+  {
+    id: "1003",
+    title: "Negotiating Your Salary: A Guide",
+    category: "Career Advice",
+    author: "Emily Davis",
+    status: "scheduled",
+    publishedDate: "2024-02-10",
+    views: 0,
+  },
+  {
+    id: "1004",
+    title: "Building Your Personal Brand Online",
+    category: "Personal Development",
+    author: "Robert Wilson",
+    status: "published",
+    publishedDate: "2024-01-25",
+    views: 1567,
+  },
+];
 
 export default function BlogsPage() {
   return (
-    <div className="flex flex-col gap-6 p-6">
-      {/* Statistics Cards */}
-      <div className="grid gap-4 md:grid-cols-3">
-        <Card className="bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-colors">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">
-              Total Blog Posts
-            </CardTitle>
-            <Book className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">125</div>
-            <p className="text-xs text-muted-foreground">+8 from last month</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-colors">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">
-              Published Posts
-            </CardTitle>
-            <BookOpen className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">98</div>
-            <p className="text-xs text-muted-foreground">78% of total posts</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-colors">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Draft Posts</CardTitle>
-            <PenSquare className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">27</div>
-            <p className="text-xs text-muted-foreground">22% of total posts</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Filters and Actions */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-1 items-center gap-4">
-          <Input
-            placeholder="Search blog posts..."
-            className="max-w-[300px] bg-card/50 backdrop-blur-xl"
-          />
-          <Select>
-            <SelectTrigger className="w-[180px] bg-card/50 backdrop-blur-xl">
-              <SelectValue placeholder="Status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Status</SelectItem>
-              <SelectItem value="published">Published</SelectItem>
-              <SelectItem value="draft">Draft</SelectItem>
-              <SelectItem value="archived">Archived</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select>
-            <SelectTrigger className="w-[180px] bg-card/50 backdrop-blur-xl">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
-              <SelectItem value="career">Career Advice</SelectItem>
-              <SelectItem value="industry">Industry Trends</SelectItem>
-              <SelectItem value="interviews">Interview Tips</SelectItem>
-              <SelectItem value="workplace">Workplace Culture</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-            </SelectContent>
-          </Select>
+    <div className="flex flex-col gap-6">
+      {/* Page Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-bold tracking-tight">Blog Posts</h1>
+          <p className="text-muted-foreground">
+            Manage and monitor all blog posts
+          </p>
         </div>
         <Link href="/dashboard/blog/new">
-          <Button className="bg-primary hover:bg-primary/90">
+          <Button className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all sm:w-auto w-full">
             <PlusCircle className="mr-2 h-4 w-4" />
             Add New Blog Post
           </Button>
         </Link>
       </div>
 
-      {/* Blog Posts Table */}
-      <div className="rounded-lg border bg-card/50 backdrop-blur-xl">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Title</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead>Author</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Published Date</TableHead>
-              <TableHead>Views</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {[...Array(5)].map((_, i) => (
-              <TableRow key={i}>
-                <TableCell className="font-medium">
-                  <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded bg-primary/10 flex items-center justify-center">
-                      <FilePenLine className="h-4 w-4 text-primary" />
-                    </div>
-                    <span>
-                      {[
-                        "How to Prepare for a Technical Interview",
-                        "Top 10 Resume Tips for 2023",
-                        "The Future of Remote Work",
-                        "Negotiating Your Salary: A Guide",
-                        "Building Your Personal Brand Online",
-                      ][i] || `Blog Post ${i + 1}`}
-                    </span>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  {[
-                    "Interview Tips",
-                    "Career Advice",
-                    "Industry Trends",
-                    "Career Advice",
-                    "Personal Development",
-                  ][i] || "General"}
-                </TableCell>
-                <TableCell>
-                  {[
-                    "John Smith",
-                    "Sarah Johnson",
-                    "Michael Brown",
-                    "Emily Davis",
-                    "Robert Wilson",
-                  ][i] || `Author ${i + 1}`}
-                </TableCell>
-                <TableCell>
-                  <span
-                    className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
-                      i % 3 === 0
-                        ? "bg-yellow-100 text-yellow-800"
-                        : i % 3 === 1
-                        ? "bg-green-100 text-green-800"
-                        : "bg-blue-100 text-blue-800"
-                    }`}
-                  >
-                    {i % 3 === 0
-                      ? "Draft"
-                      : i % 3 === 1
-                      ? "Published"
-                      : "Scheduled"}
-                  </span>
-                </TableCell>
-                <TableCell>
-                  {i % 3 === 1
-                    ? new Date(
-                        Date.now() - Math.floor(Math.random() * 30) * 86400000
-                      ).toLocaleDateString()
-                    : i % 3 === 2
-                    ? new Date(
-                        Date.now() + Math.floor(Math.random() * 10) * 86400000
-                      ).toLocaleDateString()
-                    : "-"}
-                </TableCell>
-                <TableCell>
-                  {i % 3 === 1 ? Math.floor(Math.random() * 5000) : "-"}
-                </TableCell>
-                <TableCell className="text-right">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>View Post</DropdownMenuItem>
-                      <DropdownMenuItem>Edit Post</DropdownMenuItem>
-                      {i % 3 === 0 ? (
-                        <DropdownMenuItem>Publish</DropdownMenuItem>
-                      ) : i % 3 === 1 ? (
-                        <DropdownMenuItem>Unpublish</DropdownMenuItem>
-                      ) : (
-                        <DropdownMenuItem>Edit Schedule</DropdownMenuItem>
-                      )}
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem className="text-destructive">
-                        Delete Post
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      {/* Statistics Cards */}
+      <div className="grid gap-4 md:grid-cols-3">
+        <Card className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:shadow-lg">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-foreground">
+              Total Blog Posts
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <Book className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-foreground">125</div>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp className="h-3 w-3 text-green-600 dark:text-green-400" />
+              <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                +8 from last month
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="bg-gradient-to-br from-green-500/10 to-green-600/5 border-green-500/20 hover:border-green-500/40 transition-all duration-300 hover:shadow-lg">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-foreground">
+              Published Posts
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <BookOpen className="h-5 w-5 text-green-600 dark:text-green-400" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-foreground">98</div>
+            <p className="text-xs text-muted-foreground mt-2">
+              <span className="font-semibold text-green-600 dark:text-green-400">
+                78%
+              </span>{" "}
+              of total posts
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 hover:shadow-lg">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-foreground">
+              Draft Posts
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
+              <PenSquare className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-foreground">27</div>
+            <p className="text-xs text-muted-foreground mt-2">
+              <span className="font-semibold text-amber-600 dark:text-amber-400">
+                22%
+              </span>{" "}
+              of total posts
+            </p>
+          </CardContent>
+        </Card>
       </div>
+
+      {/* Blog Posts Table */}
+      <Card className="overflow-hidden">
+        <CardHeader>
+          <CardTitle>All Blog Posts</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <DataTable
+            columns={columns}
+            data={blogPosts}
+            searchColumn="title"
+            searchPlaceholder="Filter blog posts..."
+            filterableColumns={[
+              {
+                id: "status",
+                title: "Status",
+                options: [
+                  { label: "Published", value: "published" },
+                  { label: "Draft", value: "draft" },
+                  { label: "Scheduled", value: "scheduled" },
+                ],
+              },
+              {
+                id: "category",
+                title: "Category",
+                options: [
+                  { label: "Interview Tips", value: "Interview Tips" },
+                  { label: "Career Advice", value: "Career Advice" },
+                  { label: "Industry Trends", value: "Industry Trends" },
+                  {
+                    label: "Personal Development",
+                    value: "Personal Development",
+                  },
+                ],
+              },
+            ]}
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }

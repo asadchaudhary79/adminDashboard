@@ -7,10 +7,11 @@ import { columns } from "./columns";
 import {
   UserPlus,
   Users,
-  ArrowUpRight,
+  TrendingUp,
   Briefcase,
   Building,
   ShieldCheck,
+  UserCog,
 } from "lucide-react";
 import { AddNewUser } from "@/components/modals/AddNewUser";
 import { useState } from "react";
@@ -119,146 +120,139 @@ export default function UsersPage() {
   const [isAddUserOpen, setIsAddUserOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/95 ">
-      <div className="max-w-[1800px] mx-auto">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-card p-6 rounded-xl shadow-sm mb-8">
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">
-              Users Management
-            </h1>
-            <p className="text-muted-foreground">
-              Manage and monitor user accounts
-            </p>
-          </div>
-          <Button
-            className="md:w-auto w-full bg-gradient-to-r from-primary to-primary/80"
-            onClick={() => setIsAddUserOpen(true)}
-          >
-            <UserPlus className="mr-2 h-4 w-4" />
-            Add New User
-          </Button>
+    <div className="flex flex-col gap-6">
+      {/* Page Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-bold tracking-tight">Users Management</h1>
+          <p className="text-muted-foreground">
+            Manage and monitor all platform users
+          </p>
         </div>
+        <Button
+          className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all sm:w-auto w-full"
+          onClick={() => setIsAddUserOpen(true)}
+        >
+          <UserPlus className="mr-2 h-4 w-4" />
+          Add New User
+        </Button>
+      </div>
 
-        {/* Stats Grid */}
-
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {/* Total Users Card */}
-          <Card className="p-6">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">
-                  Total Users
-                </p>
-                <h3 className="text-2xl font-bold mt-2">1,234</h3>
-                <div className="flex items-center mt-1 text-green-500 text-sm">
-                  <ArrowUpRight className="h-4 w-4 mr-1" />
-                  <span>+15.3%</span>
-                </div>
-              </div>
-              <div className="bg-primary/10 p-2 rounded-lg">
-                <Users className="h-6 w-6 text-primary" />
-              </div>
+      {/* Statistics Cards */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:shadow-lg">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-foreground">
+              Total Users
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
             </div>
-          </Card>
-
-          {/* Active User Card */}
-          <Card className="p-6">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">
-                  Active Users
-                </p>
-                <h3 className="text-2xl font-bold mt-2">856</h3>
-                <div className="flex items-center mt-1 text-green-500 text-sm">
-                  <ArrowUpRight className="h-4 w-4 mr-1" />
-                  <span>+12.5%</span>
-                </div>
-              </div>
-              <div className="bg-primary/10 p-2 rounded-lg">
-                <Briefcase className="h-6 w-6 text-primary" />
-              </div>
-            </div>
-          </Card>
-
-          {/* Recruiter Card */}
-          <Card className="p-6">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">
-                  Recruiter
-                </p>
-                <h3 className="text-2xl font-bold mt-2">324</h3>
-                <div className="flex items-center mt-1 text-green-500 text-sm">
-                  <ArrowUpRight className="h-4 w-4 mr-1" />
-                  <span>+8.2%</span>
-                </div>
-              </div>
-              <div className="bg-primary/10 p-2 rounded-lg">
-                <Building className="h-6 w-6 text-primary" />
-              </div>
-            </div>
-          </Card>
-
-          {/* Job Seeker Card */}
-          <Card className="p-6">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">
-                  Job Seeker
-                </p>
-                <h3 className="text-2xl font-bold mt-2">245</h3>
-                <div className="flex items-center mt-1 text-green-500 text-sm">
-                  <ShieldCheck className="h-4 w-4 mr-1" />
-                  <span>+8.2%</span>
-                </div>
-              </div>
-              <div className="bg-green-100 p-2 rounded-lg dark:bg-green-900/30">
-                <ShieldCheck className="h-6 w-6 text-green-600 dark:text-green-400" />
-              </div>
-            </div>
-          </Card>
-        </div>
-
-        {/* Main Content */}
-        <Card className="border-none shadow-xl bg-card/50 backdrop-blur-sm mt-7">
-          <CardHeader>
-            <CardTitle>All Users</CardTitle>
           </CardHeader>
           <CardContent>
-            <DataTable
-              columns={columns}
-              data={users}
-              searchColumn="name"
-              searchPlaceholder="Filter users..."
-              filterableColumns={[
-                {
-                  id: "role",
-                  title: "Role",
-                  options: [
-                    { label: "Admin", value: "admin" },
-                    { label: "Recruiter", value: "recruiter" },
-                    { label: "Job Seeker", value: "jobseeker" },
-                  ],
-                },
-                {
-                  id: "status",
-                  title: "Status",
-                  options: [
-                    { label: "Active", value: "active" },
-                    { label: "Suspended", value: "suspended" },
-                  ],
-                },
-              ]}
-            />
+            <div className="text-3xl font-bold text-foreground">1,234</div>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp className="h-3 w-3 text-green-600 dark:text-green-400" />
+              <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                +15.3% from last month
+              </p>
+            </div>
           </CardContent>
         </Card>
 
-        <AddNewUser
-          isOpen={isAddUserOpen}
-          onClose={() => setIsAddUserOpen(false)}
-        />
+        <Card className="bg-gradient-to-br from-green-500/10 to-green-600/5 border-green-500/20 hover:border-green-500/40 transition-all duration-300 hover:shadow-lg">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-foreground">
+              Active Users
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <UserCog className="h-5 w-5 text-green-600 dark:text-green-400" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-foreground">856</div>
+            <p className="text-xs text-muted-foreground mt-2">
+              <span className="font-semibold text-green-600 dark:text-green-400">69%</span> of total users
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:shadow-lg">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-foreground">
+              Recruiters
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <Building className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-foreground">324</div>
+            <div className="flex items-center gap-1 mt-2">
+              <TrendingUp className="h-3 w-3 text-green-600 dark:text-green-400" />
+              <p className="text-xs text-green-600 dark:text-green-400 font-medium">
+                +8.2% from last month
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border-orange-500/20 hover:border-orange-500/40 transition-all duration-300 hover:shadow-lg">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-foreground">
+              Job Seekers
+            </CardTitle>
+            <div className="h-10 w-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
+              <Briefcase className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-foreground">910</div>
+            <p className="text-xs text-muted-foreground mt-2">
+              <span className="font-semibold text-orange-600 dark:text-orange-400">74%</span> of total users
+            </p>
+          </CardContent>
+        </Card>
       </div>
+
+      {/* Users Table */}
+      <Card className="overflow-hidden">
+        <CardHeader>
+          <CardTitle>All Users</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <DataTable
+            columns={columns}
+            data={users}
+            searchColumn="name"
+            searchPlaceholder="Filter users..."
+            filterableColumns={[
+              {
+                id: "role",
+                title: "Role",
+                options: [
+                  { label: "Admin", value: "admin" },
+                  { label: "Recruiter", value: "recruiter" },
+                  { label: "Job Seeker", value: "jobseeker" },
+                ],
+              },
+              {
+                id: "status",
+                title: "Status",
+                options: [
+                  { label: "Active", value: "active" },
+                  { label: "Suspended", value: "suspended" },
+                ],
+              },
+            ]}
+          />
+        </CardContent>
+      </Card>
+
+      <AddNewUser
+        isOpen={isAddUserOpen}
+        onClose={() => setIsAddUserOpen(false)}
+      />
     </div>
   );
 }
